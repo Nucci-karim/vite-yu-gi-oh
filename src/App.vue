@@ -3,12 +3,14 @@ import HeaderComp from './components/HeaderComp.vue';
 import Cards from './components/Cards.vue';
 import axios from 'axios';
 import {store} from './store';
+import selectComp from './components/selectComp.vue';
 
 export default{
   name: 'app',
   components:{
     HeaderComp,
     Cards,
+    selectComp,
   },
   data(){
     return{
@@ -34,7 +36,8 @@ export default{
 <template>
   <div id="tutto">
     <HeaderComp/>
-    <main class="d-flex text-center justify-content-center p-5">
+    <main class="d-flex flex-column text-center justify-content-center p-5">
+      <selectComp class="align-self-start m-3"/>
       <Cards/>
     </main>
   </div>
