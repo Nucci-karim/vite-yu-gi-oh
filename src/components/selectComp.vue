@@ -20,9 +20,12 @@ export default{
 
 <template>
   <div id="" class="">
-      <select name="archtype" id="archtype">
-        <option value=""></option>
-      </select>
+    <select v-model="selected">
+        <option disabled value="">select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
   </div>
 </template>
 
