@@ -21,13 +21,23 @@ export default{
     this.chiamataApi()
   },
   methods: {
-    chiamataApi(){
-      axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=3')
-          .then(res => {
-            console.log(res.data.data)
-            const datiApi = res.data.data
-            this.store.arrayCards = datiApi
-          })
+     chiamataApi(){
+      if(store.archtypeValue !== ''){
+        axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${store.archtypeValue}`)
+           .then(res => {
+             console.log(res.data.data)
+             const datiApi = res.data.data
+             this.store.arrayCards = datiApi
+           })
+      } else{
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=3')
+           .then(res => {
+             console.log(res.data.data)
+             const datiApi = res.data.data
+             this.store.arrayCards = datiApi
+           })
+      }
+       
     },
   }
 }
@@ -37,7 +47,7 @@ export default{
   <div id="tutto">
     <HeaderComp/>
     <main class="d-flex flex-column text-center justify-content-center p-5">
-      <selectComp class="align-self-start m-3"/>
+      <selectComp @nomeEmit="chiamataApi()" class="align-self-start m-3"/>
       <Cards/>
     </main>
   </div>
